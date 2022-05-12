@@ -10,6 +10,12 @@ export const BookCardContainer = styled.div`
   border: 1px solid grey;
   background-color: #d3d3d3c9;
   border-radius: 8px;
+
+  @media only screen and (max-width: 641px) {
+    width: 95%;
+    border-left: 0;
+    border-right: 0;
+  }
 `;
 
 export const BookCardTextContainer = styled.div`

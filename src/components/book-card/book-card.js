@@ -105,7 +105,7 @@ const BookCard = (props) => {
 
   let coverImage = `https://covers.openlibrary.org/b/isbn/${props.bookISBN}-M.jpg`;
   return (
-    <div>
+    <React.Fragment>
       <BookCardContainer>
         <BookCardInfoContainer>
           <BookCardTextContainer>
@@ -196,7 +196,7 @@ const BookCard = (props) => {
           </BookCardInputContainer>
         )}
       </BookCardContainer>
-    </div>
+    </React.Fragment>
   );
 };
 export default BookCard;
