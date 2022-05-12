@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Inicijalno stanje za Book slice
 const initialBooksState = {
   favoriteBooks: [],
   readBooks: [],
@@ -9,6 +10,10 @@ const booksSlice = createSlice({
   name: "books",
   initialState: initialBooksState,
   reducers: {
+    // Akcija za dodavanje nove knjige u favorite odnosno knjige koje korisnik cita
+    // Prvo proveravamo da li je knjiga vec dodata u favorite ili se nalazi u knjigama koje je korisnik procitao
+    // Ukoliko jeste izbacuje se alert sa odgovarajucom porukom
+    // Ukoliko nije knjiga se dodaje u favorite
     addBook(state, action) {
       let isBookAddedFavorites = false;
       let isBookAddedRead = false;
@@ -39,6 +44,9 @@ const booksSlice = createSlice({
       }
     },
 
+    // Filtriramo pomocu filter metode trenutni state sa knjigama koje se nalaze u favoritima
+    // Kada korisnik pritisne dugme Done ova akcija se poziva
+    // state sa knjigama koje korisnik trenutno cita se menja tako ste se odabrana knjiga sklanja i prebacuje u procitane knjige
     readBook(state, action) {
       const filteredBooks = state.favoriteBooks.filter(
         (book) => book.title !== action.payload.title
@@ -47,6 +55,8 @@ const booksSlice = createSlice({
       state.readBooks.push(action.payload);
     },
 
+    // Kada korisnik pritisne dugme Delete book filtriramo oba state-a (knjige koje se citaju i procitane knjige)
+    // Rezultat filtriranja jeste niz knjiga bez one knjige koju je korisnik obrisao
     deleteBook(state, action) {
       const filteredFavoriteBooks = state.favoriteBooks.filter(
         (book) =>
@@ -59,6 +69,9 @@ const booksSlice = createSlice({
       state.favoriteBooks = filteredFavoriteBooks;
       state.readBooks = filteredReadBooks;
     },
+
+    // Trazimo index u kome se naziv knjige poklapa
+    // Za index koji smo dobili dodajemo korisnikove beleske
     addBookNote(state, action) {
       const objIndexFavorite = state.favoriteBooks.findIndex(
         (book) => book.title === action.payload.title
@@ -80,6 +93,7 @@ const booksSlice = createSlice({
       }
     },
 
+    // Identicno kao i za beleske, dodajemo listu za knjigu sa poklapajucim indexom
     addBookList(state, action) {
       const objIndexFavorite = state.favoriteBooks.findIndex(
         (book) => book.title === action.payload.title
