@@ -11,7 +11,7 @@ export const BookCardContainer = styled.div`
   background-color: #d3d3d3c9;
   border-radius: 8px;
 
-  @media only screen and (max-width: 641px) {
+  @media only screen and (max-width: 470px) {
     width: 95%;
     border-left: 0;
     border-right: 0;
