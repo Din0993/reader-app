@@ -78,7 +78,7 @@ const Homepage = () => {
         />
         <HomePageButton
           onClick={() =>
-            setUrl(`http://openlibrary.org/search.json?title=${inputBooks}`)
+            setUrl(`https://openlibrary.org/search.json?title=${inputBooks}`)
           }
         >
           Search
